@@ -1,6 +1,6 @@
 # Tickets-Bot
 
-### Please note that this bot is an modified instance of [Tovade's Ticket Bot](https://github.com/tovade/Ticket-Bot), So Credits to the Original Owner: @tovade
+### Please note that this bot is an modified instance of [Tovade's Ticket Bot](https://github.com/tovade/Ticket-Bot), So Credits to the Original Owner: [@tovade](https://github.com/tovade)
 
 ### A simple Tickets Bot made using Discord.js v12 and MongoDB
 - This bot can be setup for multiple servers unlike, its orginal version.
