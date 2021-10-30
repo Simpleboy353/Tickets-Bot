@@ -22,13 +22,7 @@
 #### Installing all the neccessary dependencies
 - `npm install`
 
-#### Starting the bot
-###### Do any one:
-- `npm start`
-- `node .`
-- `node index.js`
-
-## Configuration
+#### Configuration
 - Fill the required values in the `config.json` file
 ```json
 {
@@ -40,5 +34,11 @@
 - Enter your ID in the `ownerID` field
 - Enter your bot token in `token` field
 - Enter the MongoDB url in `dburl` field
+
+#### Starting the bot
+###### Do any one:
+- `npm start`
+- `node .`
+- `node index.js`
 
 ### Every fork and star is appreciated!
