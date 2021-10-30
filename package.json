@@ -1,7 +1,7 @@
 {
   "name": "ticket-bot",
   "version": "1.0.0",
-  "description": "Open source ticket bot using discord.js.",
+  "description": "Open source ticket bot using discord.js v13.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,7 @@
     "ticket bot"
   ],
   "author": "Coltz",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Simpleboy353/Tickets-Bot/issues"
   },
