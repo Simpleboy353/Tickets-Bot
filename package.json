@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/iColtz/Ticket-Bot#readme",
   "dependencies": {
+    "ascii-table": "^0.0.9",
     "discord-fetch-all": "^3.0.2",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.3.0",
+    "fs": "^0.0.1-security",
     "mongoose": "^5.10.5"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 {
-    "token": "",
-    "dburl": ""
+    "ownerID": "661501985517862972",
+    "token": "ODU2MTMyNzk0MjQ0OTIzNDMy.YM8lzA.nncJiVRIGd4XtX9LPtoP0CIO1vI",
+    "dburl": "mongodb+srv://AgentRockstar:rhtking123@cluster0.xgmca.mongodb.net/Cluster0?retryWrites=true&w=majority"
 }

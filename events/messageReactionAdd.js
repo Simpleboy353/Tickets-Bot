@@ -4,13 +4,13 @@ const guildModel = require('../models/guild');
 const ticketModel = require('../models/ticket');
 const fetchAll = require('discord-fetch-all');
 const fs = require('fs');
-const { MessageAttachment } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
-module.exports = async (client, reaction, user) => {
+module.exports = async(reaction, user, client) => {
     const { message } = reaction;
     const IdData = await ticketChannelData.findOne({
         ticketGuildID: message.guild.id
-    }).catch(err=>console.log(err))
+    }).catch(err => console.log(err))
 
     const ticketchannel = IdData.ticketChannelID
 
@@ -33,6 +33,7 @@ module.exports = async (client, reaction, user) => {
     });
 
     if (message.channel.id == ticketchannel && reaction.emoji.name == '🎫') {
+        reaction.users.remove(user).catch(console.error);
         if (ticketDoc) {
             const channel = message.guild
                 .channels.cache.get(ticketDoc.ticketID);
@@ -40,31 +41,38 @@ module.exports = async (client, reaction, user) => {
             if (!channel) {
                 await ticketDoc.deleteOne();
                 createTicket(message, user, guildDoc);
+                console.log("New Ticket Created!")
             }
         } else {
             createTicket(message, user, guildDoc);
+            console.log("New Ticket Created!")
         }
     } else if (message.id == (ticketDoc ? ticketDoc.msgID : null)) {
         if (reaction.emoji.name == '🔒') {
+            reaction.users.remove(user).catch(console.error);
+
+            const closeEmbed = new MessageEmbed()
+                .setColor("YELLOW")
+                .setDescription(`Ticket closed by ${user}`)
+
             if (!ticketDoc.ticketStatus) {
-                message.channel.send({ embed: {
-                        color: "YELLOW",
-                        description: `Ticket closed by ${user}`
-                    }
+                message.channel.send({
+                    embeds: [closeEmbed]
                 });
 
-                message.channel.updateOverwrite(
+                message.channel.permissionOverwrites.edit(
                     client.users.cache.get(ticketDoc.userID), {
                         SEND_MESSAGES: false,
                         VIEW_CHANNEL: false
                     }
                 );
 
-                const msg = await message.channel.send({ embed: {
-                        color: "RED",
-                        description: "📰 Ticket Transcript \n🔓 Reopen Ticket \n⛔ Close Ticket"
-                    }}
-                );
+                const closingEmbed = new MessageEmbed()
+                    .setColor("RED")
+                    .setDescription(`📰 Ticket Transcript \n🔓 Reopen Ticket \n⛔ Close Ticket`)
+                const msg = await message.channel.send({
+                    embeds: [closingEmbed]
+                });
 
                 await msg.react('📰');
                 await msg.react('🔓');
@@ -86,9 +94,9 @@ module.exports = async (client, reaction, user) => {
 
             fs.writeFileSync('transcript.txt', content.join('\n'));
 
-            message.channel.send(new MessageAttachment('transcript.txt', 'transcript.txt'));
+            message.channel.send({ files: [{ attachment: "transcript.txt", name: "transcript.txt" }] });
         } else if (reaction.emoji.name == '🔓') {
-            message.channel.updateOverwrite(
+            message.channel.permissionOverwrites.edit(
                 client.users.cache.get(ticketDoc.userID), {
                     SEND_MESSAGES: true,
                     VIEW_CHANNEL: true
@@ -105,10 +113,11 @@ module.exports = async (client, reaction, user) => {
 
             await ticketDoc.save();
 
-            message.channel.send({ embed: {
-                    color: "GREEN",
-                    description: `Ticket opened by ${user}`
-                }
+            const openEmbed = new MessageEmbed()
+                .setColor("GREEN")
+                .setDescription(`Ticket opened by ${user}`)
+            message.channel.send({
+                embeds: [openEmbed]
             });
         } else if (reaction.emoji.name == '⛔') {
             message.channel.delete();

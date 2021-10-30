@@ -1,21 +1,19 @@
 const ticketModel = require('../models/ticket');
+const { MessageEmbed } = require("discord.js")
 
-module.exports = async (message, user, guildDoc) => {
+module.exports = async(message, user, guildDoc) => {
     const ticketData = require('../models/channel')
     const IdData = await ticketData.findOne({
         ticketGuildID: message.guild.id
-    }).catch(err=>console.log(err)) 
+    }).catch(err => console.log(err))
 
-    const ticketcategory = IdData.parentChannelID
     guildDoc.ticketCount += 1;
 
     await guildDoc.save();
 
     const ticketChannel = await message.guild
         .channels.create(`ticket-${guildDoc.ticketCount}`, {
-            parent: ticketcategory,
-            permissionOverwrites: [
-                {
+            permissionOverwrites: [{
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES'],
                     id: user.id
                 },
@@ -24,15 +22,12 @@ module.exports = async (message, user, guildDoc) => {
                     id: message.guild.id
                 }
             ]
-        }
-    );
+        });
+    const embed = new MessageEmbed()
+        .setColor('BLUE')
+        .setDescription('React with 🔒 to close this ticket.')
 
-    const msg = await ticketChannel.send({
-        embed: {
-            color: 'BLUE',
-            description: 'React with 🔒 to close this ticket.',
-        }
-    });
+    const msg = await ticketChannel.send({ embeds: [embed] });
 
     msg.react('🔒');
 
