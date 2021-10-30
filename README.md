@@ -2,7 +2,7 @@
 
 <h1 align="center"> Tickets Bot  </h1>
 <p align="center">
-<a href="https://github.com/Simpleboy353/Tickets-Bot/blob/main/LICENSE.md"><img alt="GitHub License" src="https://img.shields.io/github/license/Simpleboy353/Tickets-Bot?style=for-the-badge"></a>
+<a href="https://github.com/Simpleboy353/Tickets-Bot/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/Simpleboy353/Tickets-Bot?style=for-the-badge"></a>
 <a href="https://github.com/Simpleboy353/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Simpleboy353/Tickets-Bot?style=for-the-badge"></a> 
 <a href="https://github.com/Simpleboy353/Tickets-Bot/network"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/Simpleboy353/Tickets-Bot?style=for-the-badge"></a>
 <a href="https://infinitybot.tk/support"><img alt="Support Server" src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></a>
