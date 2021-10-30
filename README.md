@@ -11,11 +11,11 @@
 
 ## Requirements
 - Discord.js v13 (`npm install discord.js@latest`)
-- `application.commands` scope enabled for your botin Developer Portal (For Slash Cmds)
+- `application.commands` scope enabled for your bot in Developer Portal (For Slash Cmds)
 - NodeJS v16.6 or higher
 - Basic knowledge of JavaScript or Discord.js
 
-## Geting Started
+## Getting Started
 #### Create a fork:
 - [Click Here](https://github.com/Simpleboy353/Tickets-Bot) or open your terminal and type `git clone https://github.com/Simpleboy353/Tickets-Bot.git`
 
